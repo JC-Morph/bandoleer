@@ -1,0 +1,24 @@
+# frozen_string_literal: true
+
+require './lib/version'
+
+Gem::Specification.new do |s|
+  s.name    = 'bandoleer'
+  s.version = Bandoleer::VERSION
+  s.authors = 'JC-Morph'
+  s.email   = 'jc_morph@caramail.com'
+
+  s.homepage    = 'https://github.com/JC-Morph/bandoleer'
+  s.summary     = 'Turn your ruby files into ruby vials'
+  s.description = 'An IoC container focussing on the automatic extraction of' \
+                  'constants from ruby files.'
+  s.license     = 'GPL-3.0'
+
+  s.metadata['homepage_uri']    = s.homepage
+  s.metadata['source_code_uri'] = s.homepage
+
+  s.files         = Dir['lib/*.rb', 'license', 'readme.md']
+  s.executables  << 'bandoleer'
+
+  s.add_dependency 'canister', '~> 0.9.1'
+end
