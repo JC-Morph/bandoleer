@@ -4,35 +4,37 @@ require 'canister'
 require 'forwardable'
 require_relative 'bandoleer/snake_to_camel'
 
-# Public: Wrapper for Canister, a container gem used to register dependencies.
+# Wrapper for Canister, a container gem used to register dependencies.
 # Provides helper methods for referencing constants from files.
 module Bandoleer
   extend Forwardable
-  def_delegators :bandoleer, :[], :method_missing
+  # @!method []( key )
+  #   @param key [Symbol] key for the entry to resolve
+  # @!method keys
+  #   @return [Array] list of keys for registered entries
+  def_delegators :bandoleer, :[], :keys, :method_missing
+  alias equipped keys
 
-  # Private: Ensure vials are resolved when the Bandoleer is included.
+  # Ensure vials are resolved when a module extending Bandoleer is included.
+  # @param base the module that has extended Bandoleer
   def self.extended( base )
     base.define_singleton_method(:included) {|_base| label_vials }
   end
 
-  # Public: Resolve all of the registered entries in Canister at once.
+  # Resolve all of the registered entries in Canister at once.
   def label_vials
     equipped.each {|vial| bandoleer.resolve vial }
   end
 
-  # Public: Return Array of registered entries.
-  def equipped
-    bandoleer.keys
-  end
-
-  # Public: Return or instantiate a Canister instance.
+  # @return [Canister] the stored Canister instance
   def bandoleer
     @bandoleer ||= Canister.new
   end
 
-  # Public: Register a single file or an Array of filenames. Assumes that
-  # all files are ruby files inside a folder that matches Class.name, and that
-  # contain a constant with the same name as the file.
+  # Register a single file or an Array of filenames.
+  # Assumes that all files are ruby files inside a folder named Klass.name,
+  # and that they all define a constant matching the name of the file.
+  # @param files [String, Array] filename(s) to be registered
   def equip( files )
     [files].flatten.each do |vial|
       bandoleer.register(vial) do
@@ -42,7 +44,8 @@ module Bandoleer
     end
   end
 
-  # Public: Register a Hash of filenames with custom actions.
+  # Register a Hash of filenames with custom actions.
+  # @param elixirs [Hash] pairs of files with their associated lambda or value
   def equip_custom( elixirs )
     elixirs.each do |vial, contents|
       bandoleer.register(vial.downcase) do
@@ -56,9 +59,9 @@ module Bandoleer
 
   include SnakeToCamel
 
-  # Internal: Explicitly requires given files, allowing Bandoleer to reference
-  # any defined constants in the current context. Skips input if it directly
-  # matches an already defined constant.
+  # Explicitly requires given files, allowing Bandoleer to reference any defined
+  # constants in the current context. Skips a file if the name matches an
+  # already defined constant.
   def retrieve( files )
     [files].flatten.each do |file|
       file = file.to_s
