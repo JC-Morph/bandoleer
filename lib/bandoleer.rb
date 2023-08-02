@@ -9,6 +9,7 @@ require_relative 'bandoleer/snake_to_camel'
 module Bandoleer
   extend Forwardable
   # @!method []( key )
+  #   Resolve a registered entry from Canister.
   #   @param key [Symbol] key for the entry to resolve
   # @!method keys
   #   @return [Array] list of keys for registered entries
