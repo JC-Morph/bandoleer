@@ -12,7 +12,7 @@ module Bandoleer
   #   @param key [Symbol] key for the entry to resolve
   # @!method keys
   #   @return [Array] list of keys for registered entries
-  def_delegators :bandoleer, :[], :keys, :method_missing
+  def_delegators :pockets, :[], :keys, :method_missing
   alias equipped keys
 
   # Ensure vials are resolved when a module extending Bandoleer is included.
@@ -27,8 +27,8 @@ module Bandoleer
   end
 
   # @return [Canister] the stored Canister instance
-  def bandoleer
-    @bandoleer ||= Canister.new
+  def pockets
+    @pockets ||= Canister.new
   end
 
   # Register a single file or an Array of filenames.
