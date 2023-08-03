@@ -24,7 +24,7 @@ module Bandoleer
 
   # Resolve all of the registered entries in Canister at once.
   def label_vials
-    equipped.each {|vial| bandoleer.resolve vial }
+    equipped.each {|vial| pockets.resolve vial }
   end
 
   # @return [Canister] the stored Canister instance
@@ -38,7 +38,7 @@ module Bandoleer
   # @param files [String, Array] filename(s) to be registered
   def equip( files )
     [files].flatten.each do |vial|
-      bandoleer.register(vial) do
+      pockets.register(vial) do
         retrieve vial
         const_get snake_to_camel(vial.to_s)
       end
@@ -49,7 +49,7 @@ module Bandoleer
   # @param elixirs [Hash] pairs of files with their associated lambda or value
   def equip_custom( elixirs )
     elixirs.each do |vial, contents|
-      bandoleer.register(vial.downcase) do
+      pockets.register(vial.downcase) do
         retrieve vial
         contents
       end
