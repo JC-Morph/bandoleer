@@ -61,8 +61,8 @@ module Bandoleer
   include SnakeToCamel
 
   # Explicitly requires given files, allowing Bandoleer to reference any defined
-  # constants in the current context. Skips a file if the name matches an
-  # already defined constant.
+  # constants in the current context. Skips a file if the camelised name matches
+  # an already defined constant.
   def retrieve( files )
     [files].flatten.each do |file|
       file = file.to_s
