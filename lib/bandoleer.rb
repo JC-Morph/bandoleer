@@ -67,7 +67,8 @@ module Bandoleer
     [files].flatten.each do |file|
       file = file.to_s
       next if const_defined? snake_to_camel(file)
-      require File.join(name.sub('::', File::SEPARATOR).downcase, file)
+      rel_path = File.join(name.split('::').last.downcase, file)
+      require File.expand_path(rel_path)
     end
   end
 end
