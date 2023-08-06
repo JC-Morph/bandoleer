@@ -19,6 +19,8 @@ module Bandoleer
   # Ensure vials are resolved when a module extending Bandoleer is included.
   # @param base the module that has extended Bandoleer
   def self.extended( base )
+    base_dir = File.dirname(const_source_location(base.name).first)
+    base.instance_variable_set(:@klass_dir, base_dir)
     base.define_singleton_method(:included) {|_base| label_vials }
   end
 
@@ -67,8 +69,7 @@ module Bandoleer
     [files].flatten.each do |file|
       file = file.to_s
       next if const_defined? snake_to_camel(file)
-      rel_path = File.join(klass_to_snake, file)
-      require File.expand_path(rel_path)
+      require File.join(@klass_dir, klass_to_snake, file)
     end
   end
 
