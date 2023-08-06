@@ -21,4 +21,5 @@ Gem::Specification.new do |s|
   s.executables  << 'bandoleer'
 
   s.add_dependency 'canister', '~> 0.9.1'
+  s.add_dependency 'thor',     '~> 1.2.2'
 end
