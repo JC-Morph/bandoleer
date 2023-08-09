@@ -22,4 +22,8 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'canister', '~> 0.9.1'
   s.add_dependency 'thor',     '~> 1.2.2'
+
+  s.add_development_dependency 'rspec',    '~> 3.12.0'
+  s.add_development_dependency 'cucumber', '~> 8.0.0'
+  s.add_development_dependency 'aruba',    '~> 2.1.0'
 end
