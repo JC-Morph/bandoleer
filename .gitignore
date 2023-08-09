@@ -3,6 +3,7 @@ coverage/
 doc/
 pkg/*
 tmp/
+cucumber.yml
 Gemfile.lock
 *.gem
 .bundle
