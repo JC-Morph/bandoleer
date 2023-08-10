@@ -37,7 +37,7 @@ module Bandoleer
   # Register a single file or an Array of filenames.
   # Assumes that all files are ruby files inside a folder named Klass.name,
   # and that they all define a constant matching the name of the file.
-  # @param files [String, Array] filename(s) to be registered
+  # @param files [String, Symbol, Array] filename(s) to be registered
   def equip( files )
     [files].flatten.each do |vial|
       pockets.register(vial) do
