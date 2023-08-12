@@ -1,8 +1,8 @@
-.yardoc/
 coverage/
 doc/
-pkg/*
+pkg/
 tmp/
+.yardoc/
 cucumber.yml
 Gemfile.lock
 *.gem
