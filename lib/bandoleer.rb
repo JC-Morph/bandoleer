@@ -17,7 +17,7 @@ module Bandoleer
   alias equipped keys
 
   # Ensure vials are resolved when a module extending Bandoleer is included.
-  # @param base the module that has extended Bandoleer
+  # @param base [Module] the module that has extended Bandoleer
   def self.extended( base )
     base_dir = File.dirname(const_source_location(base.name).first)
     base.instance_variable_set(:@klass_dir, base_dir)
@@ -48,7 +48,7 @@ module Bandoleer
   end
 
   # Register a Hash of filenames with custom actions.
-  # @param elixirs [Hash] pairs of files with their associated lambda or value
+  # @param elixirs [Hash] file keys with their associated values
   def equip_custom( elixirs )
     elixirs.each do |vial, contents|
       pockets.register(vial.downcase) do
