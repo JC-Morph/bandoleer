@@ -2,7 +2,7 @@
 
 require 'canister'
 require 'forwardable'
-require_relative 'bandoleer/snake_to_camel'
+require_relative 'bandoleer/conversions'
 
 # Wrapper for Canister, a container gem used to register dependencies.
 # Provides helper methods for referencing constants from files.
@@ -60,7 +60,7 @@ module Bandoleer
 
   private
 
-  include SnakeToCamel
+  include Conversions
 
   # Explicitly requires given files, allowing Bandoleer to reference any defined
   # constants in the current context. Skips a file if the camelised name matches
@@ -71,9 +71,5 @@ module Bandoleer
       next if const_defined? snake_to_camel(file)
       require File.join(@klass_dir, klass_to_snake, file)
     end
-  end
-
-  def klass_to_snake
-    name.split('::').last.split(/(?=[A-Z])/).join('_').downcase
   end
 end
