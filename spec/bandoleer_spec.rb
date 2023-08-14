@@ -22,13 +22,13 @@ describe Bandoleer do
     expect(BasicBandoleer.basic_two).to eql(BasicTwo)
   end
 
-  it 'equips new constants from files via bare Strings' do
+  it 'equips new constants from files via Strings' do
     BasicBandoleer.equip 'basic_three'
     expect(BasicBandoleer.basic_three).to eql(BasicThree)
   end
 
   it 'equips custom components' do
     BasicBandoleer.equip_custom basic_four: -> { BasicFour.report }
-    expect(BasicBandoleer.basic_four.call).to eql("report four!")
+    expect(BasicBandoleer.basic_four.call).to eql('report four!')
   end
 end
