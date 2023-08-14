@@ -1,0 +1,9 @@
+module <%= const_arr.last %>
+  extend Bandoleer
+
+  vials = %i[
+<%= vials %>
+  ]
+
+  equip vials
+end
