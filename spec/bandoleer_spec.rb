@@ -1,5 +1,6 @@
 require 'bandoleer'
 
+# Example implementation of a bandoleer module.
 module BasicBandoleer
   extend Bandoleer
 end

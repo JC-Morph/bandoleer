@@ -3,6 +3,7 @@
 require 'thor/group'
 
 module Bandoleer
+  # Generator for bandoleer template files.
   class Outfitter < Thor::Group
     include Thor::Actions
     attr_reader :const_arr, :content, :file_name, :vials
@@ -13,12 +14,14 @@ module Bandoleer
       File.join(__dir__, '/templates')
     end
 
+    # Assign instance variables needed for crafting a fresh bandoleer.
     def prepare_materials
       @const_arr = const_name.split('/')
       @file_name = const_arr.last
       @const_arr.map! {|const| const.split('_').map(&:capitalize).join }
     end
 
+    # Create and populate a bandoleer template file using assigned variables.
     def craft_bandoleer
       label_vials
       @content = ERB.new(source_template('vials')).result(get_binding)
@@ -39,6 +42,8 @@ module Bandoleer
       binding
     end
 
+    # Wrap the module content within interstitial modules, whilst maintaining
+    # the correct indentation.
     def wrap_content
       const_arr[0..-2].reverse.each do |const|
         hsh = {const: const, content: indent_content}
@@ -46,6 +51,7 @@ module Bandoleer
       end
     end
 
+    # return [String] indent @content by two spaces, except for empty lines
     def indent_content
       lines = content.split("\n")
       lines.map do |line|

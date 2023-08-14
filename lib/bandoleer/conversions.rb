@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# Provides methods to convert various objects to usefully formatted Strings
 module Bandoleer
+  # Provides methods to convert various objects to usefully formatted Strings.
   module Conversions
     # Convert a String from snake_case to CamelCase
     # @param str [String] String to convert
