@@ -1,18 +1,16 @@
 # frozen_string_literal: true
 
 require 'thor/group'
+require 'bandoleer/erb_helper'
 
 module Bandoleer
   # Generator for bandoleer template files.
   class Outfitter < Thor::Group
     include Thor::Actions
+    include ErbHelper
     attr_reader :const_arr, :content, :file_name, :vials
 
     argument :const_name, type: :string
-
-    def self.source_root
-      File.join(__dir__, '/templates')
-    end
 
     # Assign instance variables needed for crafting a fresh bandoleer.
     def prepare_materials
@@ -24,7 +22,7 @@ module Bandoleer
     # Create and populate a bandoleer template file using assigned variables.
     def craft_bandoleer
       label_vials
-      @content = ERB.new(source_template('vials')).result(get_binding)
+      @content = erb_resolve('vials')
       wrap_content
       template '%file_name%.rb.tt'
     end
@@ -38,16 +36,12 @@ module Bandoleer
       end.join("\n")
     end
 
-    def get_binding
-      binding
-    end
-
     # Wrap the module content within interstitial modules, whilst maintaining
     # the correct indentation.
     def wrap_content
       const_arr[0..-2].reverse.each do |const|
         hsh = {const: const, content: indent_content}
-        @content = ERB.new(source_template('module')).result_with_hash(hsh)
+        @content = erb_resolve('module', hsh)
       end
     end
 
@@ -57,10 +51,6 @@ module Bandoleer
       lines.map do |line|
         line.empty? ? line : line.prepend('  ')
       end.join("\n")
-    end
-
-    def source_template( name )
-      File.read(File.join(self.class.source_root, "#{name}.tt"))
     end
   end
 end
