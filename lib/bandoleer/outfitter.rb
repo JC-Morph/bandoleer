@@ -22,7 +22,7 @@ module Bandoleer
     # Create and populate a bandoleer template file using assigned variables.
     def craft_bandoleer
       label_vials
-      @content = erb_resolve('vials')
+      @content = fill_erb_template('vials')
       wrap_content
       template '%file_name%.rb.tt'
     end
@@ -41,7 +41,7 @@ module Bandoleer
     def wrap_content
       const_arr[0..-2].reverse.each do |const|
         hsh = {const: const, content: indent_content}
-        @content = erb_resolve('module', hsh)
+        @content = fill_erb_template('module', hsh)
       end
     end
 

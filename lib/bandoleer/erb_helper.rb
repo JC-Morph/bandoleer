@@ -8,8 +8,8 @@ module Bandoleer
       end
     end
 
-    def erb_resolve( template, hsh = {} )
-      erb = ERB.new source_template(template)
+    def fill_erb_template( template_name, hsh = {} )
+      erb = ERB.new source_template(template_name)
       return erb.result(get_binding) if hsh.empty?
       erb.result_with_hash hsh
     end
