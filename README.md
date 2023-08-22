@@ -1,5 +1,5 @@
 # Bandoleer
-### Turn your ruby files into ruby vials.
+### Turn your ruby files into ruby vials! (It's another container)
 
 ## Synopsis
 
@@ -7,14 +7,13 @@ Bandoleer is an IoC container focusing on the automatic extraction of constants 
 
 ## Installation
 
-Pending!
 %% Install the gem and add to the application's Gemfile by executing:
 
-%%     $ bundle add UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
+%%     $ bundle add bandoleer
 
 %% If bundler is not being used to manage dependencies, install the gem by executing:
 
-%%     $ gem install UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
+%%     $ gem install bandoleer
 
 
 ## Usage
