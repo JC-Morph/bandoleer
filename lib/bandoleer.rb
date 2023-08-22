@@ -21,11 +21,11 @@ module Bandoleer
   def self.extended( base )
     base_dir = File.dirname(const_source_location(base.name).first)
     base.instance_variable_set(:@klass_dir, base_dir)
-    base.define_singleton_method(:included) {|_base| label_vials }
+    base.define_singleton_method(:included) {|_base| open_vials }
   end
 
-  # Resolve all of the registered entries in Canister at once.
-  def label_vials
+  # Resolve all of the registered entries at once.
+  def open_vials
     equipped.each {|vial| pockets.resolve vial }
   end
 
