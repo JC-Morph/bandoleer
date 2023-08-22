@@ -8,6 +8,10 @@ module Bandoleer
       end
     end
 
+    # Retrieve an erb template and fill it. Uses an optional hash to provide
+    # variables, otherwise uses a binding of the current context to access
+    # any instance variables.
+    # @return [String] the filled template
     def fill_erb_template( template_name, hsh = {} )
       erb = ERB.new source_template(template_name)
       return erb.result(get_binding) if hsh.empty?
@@ -20,7 +24,7 @@ module Bandoleer
       binding
     end
 
-    # return [String] contents of a template file
+    # @return [String] contents of a template file
     def source_template( name )
       File.read(File.join(self.class.source_root, "#{name}.tt"))
     end
