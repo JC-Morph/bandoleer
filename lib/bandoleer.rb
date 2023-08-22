@@ -10,7 +10,7 @@ module Bandoleer
   extend Forwardable
   # @!method []( key )
   #   Resolve a registered entry from Canister.
-  #   @param key [Symbol] key for the entry to resolve
+  #   @param key [Symbol] the entry to resolve
   # @!method keys
   #   @return [Array] list of keys for registered entries
   def_delegators :pockets, :[], :keys, :method_missing

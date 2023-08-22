@@ -1,8 +1,8 @@
 module Bandoleer
   # Provides a helper method for resolving erb templates.
   module ErbHelper
+    # Add the method .source_root to klass when included.
     def self.included( base )
-      # @return [String] template source directory
       base.define_singleton_method(:source_root) do
         File.join(__dir__, '/templates')
       end
@@ -20,6 +20,7 @@ module Bandoleer
 
     private
 
+    # @return [Binding] current context
     def get_binding
       binding
     end
