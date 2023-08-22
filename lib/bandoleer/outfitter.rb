@@ -21,7 +21,7 @@ module Bandoleer
 
     # Create and populate a bandoleer template file using assigned variables.
     def craft_bandoleer
-      label_vials
+      @vials   = format_vials
       @content = fill_erb_template('vials')
       wrap_content
       template '%file_name%.rb.tt'
@@ -29,9 +29,11 @@ module Bandoleer
 
     private
 
-    def label_vials
-      files  = Dir.glob(File.join(file_name, '*.rb'))
-      @vials = files.map do |file|
+    # @return [String] ruby files from the @file_name directory, formatted for
+    # use in an erb template.
+    def format_vials
+      files = Dir.glob(File.join(file_name, '*.rb'))
+      files.map do |file|
         "    #{File.basename(file, '.*')}"
       end.join("\n")
     end
