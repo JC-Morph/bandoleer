@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Bandoleer
   # Provides a helper method for resolving erb templates.
   module ErbHelper

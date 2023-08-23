@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'bandoleer'
 
 # Example implementation of a bandoleer module.
