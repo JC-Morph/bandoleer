@@ -7,13 +7,13 @@ require 'rubocop/rake_task'
 
 Bundler::GemHelper.install_tasks
 
-Cucumber::Rake::Task.new
-
 RSpec::Core::RakeTask.new
+Cucumber::Rake::Task.new
 
 RuboCop::RakeTask.new
 
-desc 'Run the whole test suite.'
+desc 'Run the whole test suite'
 task test: %i[spec cucumber]
 
+task build:   %i[rubocop test]
 task default: :test
