@@ -23,9 +23,14 @@ Gem::Specification.new do |s|
   s.add_dependency 'canister', '~> 0.9.1'
   s.add_dependency 'thor',     '~> 1.2.2'
 
+  # Test
   s.add_development_dependency 'aruba',    '~> 2.1.0'
   s.add_development_dependency 'cucumber', '~> 8.0.0'
   s.add_development_dependency 'rspec',    '~> 3.12.0'
+
+  # Lint
+  s.add_development_dependency 'rubocop',       '~> 1.55.1'
+  s.add_development_dependency 'rubocop-rspec', '~> 2.23.2'
 
   s.required_ruby_version = '>= 3.0.0'
   s.metadata['rubygems_mfa_required'] = 'true'
