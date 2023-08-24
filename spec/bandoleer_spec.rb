@@ -10,7 +10,7 @@ end
 describe Bandoleer do
   it 'equips new constants from files via Arrays of Symbols' do
     BasicBandoleer.equip [:basic_one, :basic_two]
-    expect(BasicBandoleer.keys.size).to eql(2)
+    expect(BasicBandoleer.keys.size).to be(2)
   end
 
   it 'returns all equipped keys' do
