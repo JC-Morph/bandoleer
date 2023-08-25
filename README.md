@@ -28,7 +28,7 @@ For example, a file named `basic_one` will define a constant named `BasicOne`.
 
 Bandoleer files reference a directory; a file named `basic_bandoleer.rb` looks for files in `basic_bandoleer/`.
 
-### Equipping
+### Equipping vials
 
 You can equip files to a bandoleer using `equip`. This will register the ruby constants directly.
 Given the following structure:
@@ -55,6 +55,8 @@ module BasicBandoleer
 end
 ```
 
+### Generating bandoleers
+
 This file can be generated using the included command line interface:
 
     $ bandoleer craft basic_bandoleer
@@ -72,7 +74,7 @@ module Namespace
 end
 ```
 
-### Resolving
+### Resolving vials
 
 You can resolve equipped vials using the slice method:
 
@@ -86,6 +88,36 @@ Or with named methods:
 ```ruby
 BasicBandoleer.basic_one
 => BasicOne
+```
+
+### Equipping custom potions
+
+You can also equip custom potions (register Objects other than named constants).
+Do this using the #equip_custom method. The file named by the entry key will still be required prior to resolution.
+Given a file `basic_two.rb` with the content:
+
+```ruby
+module BasicTwo
+  def self.report
+    'report two!'
+  end
+end
+```
+
+You can register a different entry than the named constant:
+
+```ruby
+module BasicBandoleer
+  report = -> { BasicTwo.report }
+  equip_custom basic_two: report
+end
+```
+
+Then resolve it:
+
+```ruby
+BasicBandoleer.basic_two.call
+=> 'report two!'
 ```
 
 ## Contributing
