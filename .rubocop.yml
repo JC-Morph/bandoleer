@@ -1,0 +1,41 @@
+require:
+  - rubocop/cop/internal_affairs
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+
+# --- Gemspec ---
+
+Gemspec/DevelopmentDependencies:
+  EnforcedStyle: gemspec
+
+# --- Layout ---
+
+Layout/EmptyLineAfterGuardClause:
+  Enabled: false
+
+Layout/HashAlignment:
+  EnforcedColonStyle: table
+
+Layout/SpaceInsideBlockBraces:
+  SpaceBeforeBlockParameters: false
+
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
+
+# Space inside method def  Parens: true
+# Space inside method body Parens: false
+Layout/SpaceInsideParens:
+  Enabled: false
+
+# --- Style ---
+
+Style/SymbolArray:
+  MinSize: 3
+
+# --- File specific ---
+
+Naming/AccessorMethodName:
+  Exclude:
+    - lib/bandoleer/erb_helper.rb

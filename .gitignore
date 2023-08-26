@@ -7,5 +7,3 @@ cucumber.yml
 Gemfile.lock
 *.gem
 .bundle
-.reek.yml
-.rubocop.yml
