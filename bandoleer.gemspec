@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.description = 'IoC container focussing on the automatic extraction of' \
                   'constants from ruby files.'
 
-  s.files = Dir['lib/*.rb', 'license', 'readme.md']
+  s.files = Dir['lib/**/*.rb', 'license', 'readme.md']
   s.executables << 'bandoleer'
 
   # Dependencies
