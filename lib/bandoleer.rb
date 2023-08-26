@@ -2,7 +2,7 @@
 
 require 'canister'
 require 'forwardable'
-require_relative 'bandoleer/conversions'
+require 'bandoleer/conversions'
 
 # Wrapper for Canister, a container gem used to register dependencies.
 # Provides helper methods for referencing constants from files.
