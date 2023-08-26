@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
 
   s.homepage    = 'https://github.com/JC-Morph/bandoleer'
   s.summary     = 'Turn your ruby files into ruby vials!'
-  s.description = 'IoC container focussing on the automatic extraction of' \
+  s.description = 'IoC container focussing on the automatic extraction of ' \
                   'constants from ruby files.'
 
   s.files = Dir['lib/**/*.rb', 'license', 'readme.md']
